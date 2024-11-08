@@ -12,15 +12,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sigi"
         tools:targetApi="31">
+
+        <!-- LoginActivity를 시작 Activity로 설정 -->
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+        <!-- MainActivity는 로그인 후에만 접근 -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+
+        <!-- RegisterActivity -->
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="true" />
+
+    </application>
 </manifest>

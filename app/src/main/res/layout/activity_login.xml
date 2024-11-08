@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- activity_login.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#D0E3CC"
+    android:gravity="center">
+
+    <!-- 로고 이미지 -->
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="257dp"
+        android:layout_height="291dp"
+        android:src="@drawable/ic_plant_logo"
+        android:layout_marginBottom="32dp"
+        android:contentDescription="Logo" />
+
+    <!-- 이메일 입력 -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email Address"
+        android:layout_marginBottom="16dp">
+
+        <EditText
+            android:id="@+id/emailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#BFCFC9"
+            android:padding="10dp"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- 비밀번호 입력 -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:layout_marginBottom="8dp">
+
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#BFCFC9"
+            android:padding="10dp"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- 비밀번호 찾기 -->
+
+    <!-- 로그인 버튼 -->
+    <TextView
+        android:id="@+id/forgotPasswordTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginBottom="24dp"
+        android:text="Forget Password?"
+        android:textColor="#000"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="LOGIN"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:backgroundTint="#4C9A66" />
+    <!-- 회원가입 버튼 (Button 형식) -->
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="REGISTER"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:backgroundTint="#4CAF50"
+        android:layout_marginTop="8dp" />
+
+</LinearLayout>
+
