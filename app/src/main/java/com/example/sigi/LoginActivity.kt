@@ -56,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        // 비밀번호 찾기 클릭 이벤트
+        // 비밀번호 찾기 클릭 이벤트ㅇ
         forgotPasswordTextView.setOnClickListener {
             val email = emailEditText.text.toString()
             if (email.isNotEmpty()) {
