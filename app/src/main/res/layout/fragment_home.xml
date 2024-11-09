@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#D0E3CC"
+    tools:context=".HomeFragment">
+
+    <!-- 메인 컨테이너 -->
+    <FrameLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- 이미지 (식물 로고) -->
+        <ImageView
+            android:id="@+id/plantImage"
+            android:layout_width="193dp"
+            android:layout_height="185dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="160dp"
+            android:src="@drawable/plant_logo_circle" />
+
+        <!-- 텍스트 설명 -->
+
+        <TextView
+            android:id="@+id/startText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="360dp"
+            android:text="Let's get started!"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <!-- ADD PLANTS 버튼 -->
+        <Button
+            android:id="@+id/addPlantButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="420dp"
+            android:backgroundTint="#2B7A0B"
+            android:text="+ ADD PLANTS"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
