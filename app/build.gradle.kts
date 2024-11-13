@@ -53,6 +53,12 @@ dependencies {
     // Firebase Auth with KTX support (version handled by BoM)
     implementation("com.google.firebase:firebase-auth-ktx")
 
+    // Firebase Firestore with KTX support
+    implementation("com.google.firebase:firebase-firestore-ktx")
+
+    // Coil for image loading
+    implementation("io.coil-kt:coil:2.1.0")
+
     // Other dependencies
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("androidx.core:core-ktx:1.13.1")

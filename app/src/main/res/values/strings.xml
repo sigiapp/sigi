@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">sigi</string>
+    <string name="plant_image">Plant Image</string>
+    <string name="back">contentDescription</string>
 </resources>
