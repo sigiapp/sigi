@@ -7,9 +7,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.sigi.R
 
-class PlantAdapter(private var plantList: List<Plant>) : RecyclerView.Adapter<PlantAdapter.PlantViewHolder>() {
+class PlantAdapter(
+    private var plantList: List<Plant>,
+    private val onItemClick: (Plant) -> Unit  // 클릭 리스너를 람다 함수로 추가
+) : RecyclerView.Adapter<PlantAdapter.PlantViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlantViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_plant, parent, false)
@@ -24,6 +26,9 @@ class PlantAdapter(private var plantList: List<Plant>) : RecyclerView.Adapter<Pl
             placeholder(R.drawable.placeholder)
             error(R.drawable.error)
         }
+
+        // 클릭 이벤트 설정
+        holder.itemView.setOnClickListener { onItemClick(plant) }
     }
 
     override fun getItemCount(): Int = plantList.size

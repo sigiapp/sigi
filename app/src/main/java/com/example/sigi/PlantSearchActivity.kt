@@ -1,5 +1,6 @@
 package com.example.sigi
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -27,7 +28,13 @@ class PlantSearchActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        plantAdapter = PlantAdapter(plantList)
+        // 클릭 리스너 추가
+        plantAdapter = PlantAdapter(plantList) { plant ->
+            // PlantDetailActivity로 이동
+            val intent = Intent(this, PlantDetailActivity::class.java)
+            intent.putExtra("plant_id", plant.id)  // 식물 ID 전달
+            startActivity(intent)
+        }
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@PlantSearchActivity)
             adapter = plantAdapter
