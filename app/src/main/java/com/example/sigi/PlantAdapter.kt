@@ -7,6 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import androidx.recyclerview.widget.DiffUtil
+
 
 class PlantAdapter(
     private var plantList: List<Plant>,
@@ -35,9 +37,13 @@ class PlantAdapter(
 
     // 필터링된 데이터로 업데이트
     fun updateData(newList: List<Plant>) {
+        val diffCallback = PlantDiffCallback(plantList, newList)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+
         plantList = newList
-        notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
     }
+
 
     inner class PlantViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameTextView: TextView = view.findViewById(R.id.nameTextView)
