@@ -6,12 +6,12 @@
         android:icon="@drawable/ic_home"/>
     <item
         android:id="@+id/fragment_search"
-        android:title="검색"
+        android:title="대화"
         android:icon="@drawable/ic_search"/>
     <item
         android:id="@+id/fragment_calendar"
         android:title="캘린더"
-        android:icon="@drawable/ic_search"/>
+        android:icon="@drawable/ic_calendar"/>
     <item
         android:id="@+id/fragment_settings"
         android:title="설정"
