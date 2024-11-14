@@ -3,4 +3,5 @@
     <string name="plant_image">Plant Image</string>
     <string name="back_button">뒤로가기</string>
     <string name="plant_image_description">식물 이미지</string>
+    <string name="back">뒤로가기</string>
 </resources>
