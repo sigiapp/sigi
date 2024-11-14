@@ -23,6 +23,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".CalendarFragment" />
+        <activity android:name=".DiaryWriteActivity" />
+
+
         <!-- MainActivity는 로그인 후에만 접근 -->
         <activity
             android:name=".MainActivity"

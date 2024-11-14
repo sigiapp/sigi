@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#D0E3CC"
+    android:gravity="center">
+
+    <!-- 날짜 표시 -->
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="선택한 날짜"
+        android:textSize="20sp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- 일기 내용 입력 -->
+    <EditText
+        android:id="@+id/et_diary_content"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:hint="오늘의 식물 상태를 기록하세요"
+        android:gravity="top"
+        android:padding="8dp"
+        android:background="@drawable/note_background"
+        android:inputType="textMultiLine"/>
+
+    <!-- 이미지 미리보기 -->
+    <ImageView
+        android:id="@+id/image_preview"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="선택된 이미지 미리보기"
+        android:scaleType="centerCrop"
+        android:background="#e0e0e0" />
+
+    <!-- 이미지 업로드 및 카메라 버튼들을 가로로 배치 -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="center">
+
+        <!-- 이미지 업로드 버튼 -->
+        <Button
+            android:id="@+id/btn_upload_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#4C9A66"
+            android:text="이미지 업로드" />
+
+        <!-- 카메라 촬영 버튼 -->
+        <Button
+            android:id="@+id/btn_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#4C9A66"
+            android:text="카메라로 촬영하기" />
+    </LinearLayout>
+
+    <!-- 저장 버튼 -->
+    <Button
+        android:id="@+id/btn_save_diary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="일기 저장"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#4C9A66"/>
+
+    <!-- 뒤로가기 버튼 -->
+    <Button
+        android:id="@+id/btn_back_to_calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="캘린더로 돌아가기"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#4C9A66"/>
+</LinearLayout>
