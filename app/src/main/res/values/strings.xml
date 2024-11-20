@@ -3,5 +3,27 @@
     <string name="plant_image">Plant Image</string>
     <string name="back_button">뒤로가기</string>
     <string name="plant_image_description">식물 이미지</string>
-    <string name="back">뒤로가기</string>
+
+    <!-- 기본 정보 -->
+    <string name="scientific_name">학명: %1$s</string>
+    <string name="english_name">영명: %1$s</string>
+    <string name="distribution_name">유통명: %1$s</string>
+    <string name="family_name">과명: %1$s</string>
+    <string name="origin">원산지: %1$s</string>
+
+    <!-- 상세 정보 -->
+    <string name="classification">분류: %1$s</string>
+    <string name="growth_form">생육형태: %1$s</string>
+    <string name="indoor_composition">실내정원구성: %1$s</string>
+    <string name="ecology">생태: %1$s</string>
+    <string name="leaf_pattern">잎 무늬: %1$s</string>
+    <string name="leaf_color">잎 색: %1$s</string>
+    <string name="bloom_season">발화 계절: %1$s</string>
+    <string name="flower_color">꽃 색: %1$s</string>
+    <string name="fruit_season">과일 계절: %1$s</string>
+    <string name="fruit_color">과일 색: %1$s</string>
+    <string name="growth_height">성장 높이: %1$s</string>
+    <string name="growth_width">성장 넓이: %1$s</string>
+    <string name="leaf_shape">잎 형태: %1$s</string>
+    <string name="scent">냄새: %1$s</string>
 </resources>

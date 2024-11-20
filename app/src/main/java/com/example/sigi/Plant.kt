@@ -1,8 +1,25 @@
 package com.example.sigi
-
 data class Plant(
     val id: String = "",
     val name: String = "",
+    val scientificName: String = "",
     val englishName: String = "",
+    val distributionName: String = "",
+    val familyName: String = "",
+    val origin: String = "",
+    val classification: String = "",
+    val growthForm: String = "",
+    val indoorComposition: String = "",
+    val ecology: String = "",
+    val leafPattern: String = "",
+    val leafColor: String = "",
+    val bloomSeason: String = "",
+    val flowerColor: String = "",
+    val fruitSeason: String = "",
+    val fruitColor: String = "",
+    val growthHeight: String = "",
+    val growthWidth: String = "",
+    val leafShape: String = "",
+    val scent: String = "",
     val imageUrl: String = ""
 )

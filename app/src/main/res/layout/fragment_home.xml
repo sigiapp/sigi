@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="420dp"
-            android:backgroundTint="#2B7A0B"
+            android:backgroundTint="#4C9A66"
             android:text="+ ADD PLANTS"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />

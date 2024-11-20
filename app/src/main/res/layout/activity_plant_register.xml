@@ -1,0 +1,237 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- 상단 툴바 레이아웃 (search.xml과 동일한 스타일)-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:elevation="4dp"
+        android:padding="8dp">
+
+        <!-- 뒤로가기 버튼 -->
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="start"
+            android:src="@drawable/ic_back_arrow"
+            app:tint="@android:color/black"
+            android:contentDescription="@string/back_button" />
+
+        <!-- 제목 텍스트 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="식물 등록"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- 식물 이미지 (클릭 가능) -->
+            <ImageView
+                android:id="@+id/userPlantImageView"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:src="@drawable/plant_logo2"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/plant_image"
+                android:onClick="onUserPlantImageClick" />
+
+            <!-- 애칭 입력 -->
+            <TextView
+                android:text="이름"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
+
+            <EditText
+                android:id="@+id/nicknameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="식물 애칭을 입력하세요"
+                android:inputType="text" />
+
+            <!-- 화분 종류 (배수 기준) 선택 -->
+            <TextView
+                android:text="화분 종류 (배수 기준)"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
+
+            <!-- 화분 종류 (배수 기준) 버튼 -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/potTypeGood"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="좋음 | 물이 잘 마르고 빠짐"
+                    app:cornerRadius="16dp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/default_button_color"
+                    android:textColor="@color/default_text_color"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/potTypeNormal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="보통 | 물이 적당히 마르고 빠짐"
+                    app:cornerRadius="16dp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/default_button_color"
+                    android:textColor="@color/default_text_color"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/potTypeBad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="나쁨 | 물이 잘 안 마르고 배수가 안됨"
+                    app:cornerRadius="16dp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/default_button_color"
+                    android:textColor="@color/default_text_color"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+            </LinearLayout>
+
+            <!-- 화분 크기 (지름 및 깊이) 선택 -->
+            <TextView
+                android:text="화분 크기 (지름 및 깊이)"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
+
+            <!-- 화분 크기 버튼 -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/potSizeLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="큼 | 25cm 이상"
+                    app:cornerRadius="16dp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/default_button_color"
+                    android:textColor="@color/default_text_color"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/potSizeNormal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="보통 | 15cm 이상 25cm 이하"
+                    app:cornerRadius="16dp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/default_button_color"
+                    android:textColor="@color/default_text_color"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/potSizeSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="작음 | 15cm 이하"
+                    app:cornerRadius="16dp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/default_button_color"
+                    android:textColor="@color/default_text_color"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+            </LinearLayout>
+
+            <!-- 햇빛(조명) 선택 -->
+            <TextView
+                android:text="햇빛 (조명)"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
+
+            <!-- 햇빛 버튼 -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/sunlightHigh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="많은 빛"
+                    app:cornerRadius="16dp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/default_button_color"
+                    android:textColor="@color/default_text_color"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/sunlightMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="적당한 빛"
+                    app:cornerRadius="16dp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/default_button_color"
+                    android:textColor="@color/default_text_color"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/sunlightLow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="그늘"
+                    app:cornerRadius="16dp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/default_button_color"
+                    android:textColor="@color/default_text_color"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+            </LinearLayout>
+
+            <!-- 등록하기 버튼 -->
+            <Button
+                android:id="@+id/registerPlantButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="등록하기"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#4C9A66"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

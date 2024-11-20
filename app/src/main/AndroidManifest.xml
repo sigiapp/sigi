@@ -25,6 +25,9 @@
 
         <activity android:name=".CalendarFragment" />
         <activity android:name=".DiaryWriteActivity" />
+        <activity android:name=".PlantDetailActivity" />
+        <activity android:name=".PlantRegisterActivity" />
+
 
 
         <!-- MainActivity는 로그인 후에만 접근 -->

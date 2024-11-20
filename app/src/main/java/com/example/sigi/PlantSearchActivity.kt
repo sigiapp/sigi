@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,15 +26,24 @@ class PlantSearchActivity : AppCompatActivity() {
         setupRecyclerView()
         setupSearchListener()
         fetchPlantsFromFirestore()
+
+        // 뒤로가기 버튼 동작 추가
+        binding.backButton.setOnClickListener {
+            finish() // 현재 액티비티 종료
+        }
     }
 
     private fun setupRecyclerView() {
         // 클릭 리스너 추가
         plantAdapter = PlantAdapter(plantList) { plant ->
-            // PlantDetailActivity로 이동
-            val intent = Intent(this, PlantDetailActivity::class.java)
-            intent.putExtra("plant_id", plant.id)  // 식물 ID 전달
-            startActivity(intent)
+            // plant.id가 null인지 체크
+            if (plant.id != null) {
+                val intent = Intent(this, PlantDetailActivity::class.java)
+                intent.putExtra("plant_id", plant.id)
+                startActivity(intent)
+            } else {
+                Log.e("PlantSearchActivity", "식물 ID가 null입니다: ${plant.name}")
+            }
         }
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@PlantSearchActivity)
@@ -69,7 +79,7 @@ class PlantSearchActivity : AppCompatActivity() {
                 binding.emptyView.visibility = if (plantList.isEmpty()) View.VISIBLE else View.GONE
             }
             .addOnFailureListener { e ->
-                e.printStackTrace()
+                Log.e("PlantSearchActivity", "Firebase 데이터 로드 실패", e)
                 binding.emptyView.visibility = View.VISIBLE
             }
     }

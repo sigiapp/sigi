@@ -1,5 +1,6 @@
 package com.example.sigi
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
@@ -16,38 +17,57 @@ class PlantDetailActivity : AppCompatActivity() {
         binding = ActivityPlantDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 인텐트에서 plant_name 받아오기
-        val plantName = intent.getStringExtra("plant_name")
-        if (plantName != null) {
-            loadPlantDetailsByName(plantName)
-        }
-
-        // 뒤로가기 버튼 클릭 리스너 설정 (필요 시 추가)
+        // 뒤로가기 버튼 클릭 리스너 설정
         binding.backButton.setOnClickListener {
             finish()
         }
+
+        // 전달받은 plantId
+        val plantId = intent.getStringExtra("plant_id")
+        if (plantId != null) {
+            loadPlantDetails(plantId)
+        }
+
+        // "등록하기" 버튼 클릭 시 plantId를 전달하며 PlantRegisterActivity로 이동
+        binding.registerPlantButton.setOnClickListener {
+            val intent = Intent(this, PlantRegisterActivity::class.java)
+            intent.putExtra("plant_id", plantId) // plantId 전달
+            startActivity(intent)
+        }
     }
 
-    private fun loadPlantDetailsByName(plantName: String) {
-        db.collection("plants_search")
-            .whereEqualTo("name", plantName)
-            .get()
-            .addOnSuccessListener { documents ->
-                if (!documents.isEmpty) {
-                    val plant = documents.documents[0].toObject(Plant::class.java)
+    private fun loadPlantDetails(plantId: String) {
+        db.collection("plants_search").document(plantId).get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    val plant = document.toObject(Plant::class.java)
                     if (plant != null) {
-                        binding.plantName.text = plant.name
-                        binding.plantEnglishName.text = plant.englishName
                         binding.plantImageView.load(plant.imageUrl) {
                             placeholder(R.drawable.placeholder)
                             error(R.drawable.error)
                         }
+                        binding.plantScientificName.text = getString(R.string.scientific_name, plant.scientificName)
+                        binding.plantEnglishName.text = getString(R.string.english_name, plant.englishName)
+                        binding.plantDistributionName.text = getString(R.string.distribution_name, plant.distributionName)
+                        binding.plantFamilyName.text = getString(R.string.family_name, plant.familyName)
+                        binding.plantOrigin.text = getString(R.string.origin, plant.origin)
+
+                        // 상세 정보
+                        binding.plantClassification.text = getString(R.string.classification, plant.classification)
+                        binding.plantGrowthForm.text = getString(R.string.growth_form, plant.growthForm)
+                        binding.plantIndoorComposition.text = getString(R.string.indoor_composition, plant.indoorComposition)
+                        binding.plantEcology.text = getString(R.string.ecology, plant.ecology)
+                        binding.plantLeafPattern.text = getString(R.string.leaf_pattern, plant.leafPattern)
+                        binding.plantLeafColor.text = getString(R.string.leaf_color, plant.leafColor)
+                        binding.plantBloomSeason.text = getString(R.string.bloom_season, plant.bloomSeason)
+                        binding.plantFlowerColor.text = getString(R.string.flower_color, plant.flowerColor)
+                        binding.plantFruitSeason.text = getString(R.string.fruit_season, plant.fruitSeason)
+                        binding.plantFruitColor.text = getString(R.string.fruit_color, plant.fruitColor)
+                        binding.plantGrowthHeight.text = getString(R.string.growth_height, plant.growthHeight)
+                        binding.plantGrowthWidth.text = getString(R.string.growth_width, plant.growthWidth)
+                        binding.plantLeafShape.text = getString(R.string.leaf_shape, plant.leafShape)
+                        binding.plantScent.text = getString(R.string.scent, plant.scent)
                     }
-                } else {
-                    // 문서를 찾을 수 없는 경우에 대한 처리 (예: "데이터가 없습니다" 메시지 표시)
-                    binding.plantName.text = "데이터가 없습니다"
-                    binding.plantEnglishName.text = ""
-                    binding.plantImageView.setImageResource(R.drawable.error)
                 }
             }
             .addOnFailureListener { e ->
@@ -55,4 +75,3 @@ class PlantDetailActivity : AppCompatActivity() {
             }
     }
 }
-

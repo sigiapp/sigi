@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="default_button_color">#FFFFFF</color> <!-- 기본 버튼 색상 (회색) -->
+    <color name="default_text_color">#000000</color>   <!-- 기본 텍스트 색상 (검정) -->
+    <color name="selected_button_color">#4CAF50</color> <!-- 선택된 버튼 색상 (녹색) -->
+    <color name="selected_text_color">#FFFFFF</color>  <!-- 선택된 버튼 색상 (흰색) -->
 </resources>
