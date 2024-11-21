@@ -1,6 +1,5 @@
 package com.example.sigi
 
-// LoginActivity.kt
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,26 +9,30 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var loginButton: Button
     private lateinit var forgotPasswordTextView: TextView
-    private lateinit var registerButton: TextView // 회원가입으로 가는 버튼
+    private lateinit var registerButton: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
+
         emailEditText = findViewById(R.id.emailEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
         loginButton = findViewById(R.id.loginButton)
         forgotPasswordTextView = findViewById(R.id.forgotPasswordTextView)
-        registerButton = findViewById(R.id.registerButton) // 레이아웃에 추가한 회원가입 버튼 (TextView 형식)
+        registerButton = findViewById(R.id.registerButton)
 
         // 로그인 버튼 클릭 이벤트
         loginButton.setOnClickListener {
@@ -42,10 +45,36 @@ class LoginActivity : AppCompatActivity() {
                         if (task.isSuccessful) {
                             Log.d("FirebaseAuth", "로그인 성공")
                             Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show()
+
+                            val currentUser = auth.currentUser
+                            if (currentUser != null) {
+                                // Firestore에서 사용자 이름 가져오기
+                                db.collection("names")
+                                    .document(currentUser.uid)
+                                    .get()
+                                    .addOnSuccessListener { document ->
+                                        if (!document.exists()) {
+                                            // Firestore에 기본 이름 생성
+                                            val nameData = hashMapOf("name" to "새 사용자")
+                                            db.collection("names").document(currentUser.uid)
+                                                .set(nameData)
+                                                .addOnSuccessListener {
+                                                    Log.d("Firestore", "기본 이름 설정 완료")
+                                                }
+                                                .addOnFailureListener { e ->
+                                                    Log.e("Firestore", "기본 이름 설정 실패", e)
+                                                }
+                                        }
+                                    }
+                                    .addOnFailureListener { e ->
+                                        Log.e("Firestore", "Firestore 이름 가져오기 실패", e)
+                                    }
+                            }
+
                             // MainActivity로 이동
                             val intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)
-                            finish() // 로그인 화면을 종료하여 뒤로 가기 시 돌아오지 않도록 함
+                            finish()
                         } else {
                             Log.e("FirebaseAuth", "로그인 실패", task.exception)
                             Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
@@ -56,7 +85,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        // 비밀번호 찾기 클릭 이벤트ㅇ
+        // 비밀번호 찾기 클릭 이벤트
         forgotPasswordTextView.setOnClickListener {
             val email = emailEditText.text.toString()
             if (email.isNotEmpty()) {
