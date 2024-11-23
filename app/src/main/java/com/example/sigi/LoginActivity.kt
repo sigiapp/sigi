@@ -1,6 +1,7 @@
 package com.example.sigi
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -15,6 +16,8 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
+    private lateinit var sharedPreferences: SharedPreferences
+
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var loginButton: Button
@@ -27,12 +30,16 @@ class LoginActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
+        sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
 
         emailEditText = findViewById(R.id.emailEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
         loginButton = findViewById(R.id.loginButton)
         forgotPasswordTextView = findViewById(R.id.forgotPasswordTextView)
         registerButton = findViewById(R.id.registerButton)
+
+        // 로그인 유지 확인
+        checkLoginStatus()
 
         // 로그인 버튼 클릭 이벤트
         loginButton.setOnClickListener {
@@ -45,6 +52,9 @@ class LoginActivity : AppCompatActivity() {
                         if (task.isSuccessful) {
                             Log.d("FirebaseAuth", "로그인 성공")
                             Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show()
+
+                            // 로그인 상태 저장
+                            saveLoginStatus()
 
                             val currentUser = auth.currentUser
                             if (currentUser != null) {
@@ -92,7 +102,7 @@ class LoginActivity : AppCompatActivity() {
                 auth.sendPasswordResetEmail(email)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(this, "비밀번호 재설정 이메일을 보냈습니다.", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "비밀번호 재설정 이메일을 보냈습니다. 스팸메일함도 확인해 주세요.", Toast.LENGTH_SHORT).show()
                         } else {
                             Toast.makeText(this, "이메일 전송 실패", Toast.LENGTH_SHORT).show()
                         }
@@ -107,5 +117,22 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    // 로그인 상태 확인
+    private fun checkLoginStatus() {
+        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+        if (isLoggedIn && auth.currentUser != null) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    // 로그인 상태 저장
+    private fun saveLoginStatus() {
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("isLoggedIn", true)
+        editor.apply()
     }
 }

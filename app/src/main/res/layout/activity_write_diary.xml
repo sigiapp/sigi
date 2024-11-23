@@ -31,12 +31,12 @@
     <!-- 이미지 미리보기 -->
     <ImageView
         android:id="@+id/image_preview"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_width="328dp"
+        android:layout_height="155dp"
         android:layout_marginTop="16dp"
+        android:background="#e0e0e0"
         android:contentDescription="선택된 이미지 미리보기"
-        android:scaleType="centerCrop"
-        android:background="#e0e0e0" />
+        android:scaleType="centerCrop" />
 
     <!-- 이미지 업로드 및 카메라 버튼들을 가로로 배치 -->
     <LinearLayout
