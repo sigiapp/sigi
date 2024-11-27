@@ -34,7 +34,9 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // 챗봇 초기 메시지
-        addMessageToChat("안녕하세요! 무엇을 도와드릴까요?", isUser = false)
+        addMessageToChat("찾으시는 식물의 특징을 알려주세요", isUser = false)
+
+        askNextQuestion()
 
         binding.sendButton.setOnClickListener {
             val userMessage = binding.messageInput.text.toString()
@@ -44,11 +46,7 @@ class SearchFragment : Fragment() {
                 binding.messageInput.text?.clear()
 
                 // 사용자 입력 처리
-                if (userMessage == "식물 찾기") {
-                    startQuestionnaire()
-                } else {
-                    handleUserResponse(userMessage)
-                }
+                handleUserResponse(userMessage)
             }
         }
     }

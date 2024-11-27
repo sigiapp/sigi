@@ -14,30 +14,57 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        setBottomNavigationView()
+        // SharedPreferences에서 상태 확인
+        val sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE)
+        val isRegistered = sharedPreferences.getBoolean("isRegistered", false)
 
+        // 초기 프래그먼트 설정
         if (savedInstanceState == null) {
-            binding.bottomNavigationView.selectedItemId = R.id.fragment_home
+            val initialFragment: Fragment = if (isRegistered) {
+                RegisteredHomeFragment()
+            } else {
+                HomeFragment()
+            }
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.main_container, initialFragment)
+                .commit()
+
+            // 바텀 네비게이션 기본 선택
+            binding.bottomNavigationView.selectedItemId = if (isRegistered) {
+                R.id.fragment_home // RegisteredHomeFragment도 home 메뉴로 설정
+            } else {
+                R.id.fragment_home
+            }
         }
+
+        setBottomNavigationView()
     }
 
     private fun setBottomNavigationView() {
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.fragment_home -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.main_container, HomeFragment()).commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_container, HomeFragment())
+                        .commit()
                     true
                 }
                 R.id.fragment_search -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.main_container, SearchFragment()).commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_container, SearchFragment())
+                        .commit()
                     true
                 }
                 R.id.fragment_calendar -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.main_container, CalendarFragment()).commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_container, CalendarFragment())
+                        .commit()
                     true
                 }
                 R.id.fragment_settings -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.main_container, SettingsFragment()).commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_container, SettingsFragment())
+                        .commit()
                     true
                 }
                 else -> false
