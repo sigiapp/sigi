@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DFF3E0">
+    android:background="#d8e5ce">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,34 +12,27 @@
         android:padding="16dp">
 
         <!-- 상단 바 -->
+
+        <!-- 현재 이메일 표시 -->
+
+
         <RelativeLayout
             android:id="@+id/topBar"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:background="#A5D07A">
+            android:background="#A5D6A7">
 
-            <!-- 뒤로가기 버튼 -->
-            <ImageView
-                android:id="@+id/backButton"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginStart="16dp"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_back_arrow"
-                android:contentDescription="Back" />
-
-            <!-- 화면 제목 -->
             <TextView
                 android:id="@+id/titleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:text="설정"
-                android:textSize="20sp"
                 android:textColor="#FFFFFF"
-                android:layout_centerInParent="true" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
         </RelativeLayout>
 
-        <!-- 현재 이메일 표시 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -95,6 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="이름 변경"
+            android:backgroundTint="#4C9A66"
             android:layout_marginTop="8dp" />
 
         <!-- 구분선 -->
@@ -159,6 +153,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="이메일 및 비밀번호 변경"
+            android:backgroundTint="#4C9A66"
             android:layout_marginTop="16dp" />
     </LinearLayout>
 </ScrollView>

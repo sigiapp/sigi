@@ -10,14 +10,24 @@
     android:background="#d8e5ce">
 
     <!-- 캘린더 제목 -->
-    <TextView
-        android:id="@+id/tv_calendar_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="캘린더"
-        android:textSize="20sp"
-        android:textColor="@android:color/black"
-        android:layout_marginBottom="16dp" />
+    <RelativeLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#A5D6A7"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="캘린더"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
 
     <!-- CalendarView 추가 -->
     <CalendarView
@@ -29,12 +39,12 @@
     <TextView
         android:id="@+id/tv_selected_note"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="278dp"
         android:layout_marginTop="16dp"
-        android:padding="8dp"
         android:background="@drawable/note_background"
-        android:text="선택된 날짜의 노트가 여기에 표시됩니다."
-        android:textSize="14sp"/>
+        android:padding="8dp"
+        android:text="선택된 날짜의 일기가 여기에 표시됩니다."
+        android:textSize="14sp" />
 
 
 </LinearLayout>
