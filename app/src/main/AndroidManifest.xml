@@ -28,6 +28,9 @@
         <activity android:name=".PlantDetailActivity" />
         <activity android:name=".PlantRegisterActivity" />
 
+        <activity android:name=".RegisterCompleteActivity" />
+
+
 
 
         <!-- MainActivity는 로그인 후에만 접근 -->

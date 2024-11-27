@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#D0E3CC"
     android:padding="16dp">
 
     <!-- 상단 툴바 레이아웃 (search.xml과 동일한 스타일)-->
@@ -11,7 +12,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
+        android:background="#A5D6A7"
         android:elevation="4dp"
         android:padding="8dp">
 
@@ -22,7 +23,7 @@
             android:layout_height="24dp"
             android:layout_gravity="start"
             android:src="@drawable/ic_back_arrow"
-            app:tint="@android:color/black"
+            app:tint="@android:color/white"
             android:contentDescription="@string/back_button" />
 
         <!-- 제목 텍스트 -->
@@ -32,6 +33,7 @@
             android:layout_gravity="center"
             android:text="식물 상세"
             android:textSize="20sp"
+            android:textColor="@android:color/white"
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>

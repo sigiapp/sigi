@@ -17,6 +17,8 @@ android {
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        // Imgur Client ID를 BuildConfig에 추가
+        buildConfigField("String", "IMGUR_CLIENT_ID", "\"${project.properties["IMGUR_CLIENT_ID"]}\"")
     }
 
     buildTypes {
@@ -37,6 +39,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true //이거 해야함
     }
 }
 
@@ -44,14 +47,17 @@ dependencies {
     // Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
 
-    // Firebase Firestore with KTX support (version handled by BoM)
-    implementation("com.google.firebase:firebase-firestore-ktx")
-
-    // Firebase Auth with KTX support (version handled by BoM)
-    implementation("com.google.firebase:firebase-auth-ktx")
-
     // Firebase Firestore with KTX support
     implementation("com.google.firebase:firebase-firestore-ktx")
+
+    // Firebase Authentication with KTX support
+    implementation("com.google.firebase:firebase-auth-ktx")
+
+    // Firebase Realtime Database with KTX support
+    implementation("com.google.firebase:firebase-database-ktx")
+
+    // Firebase Storage
+    implementation("com.google.firebase:firebase-storage:20.1.0")
 
     // Coil for image loading
     implementation("io.coil-kt:coil:2.1.0")

@@ -1,0 +1,19 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 말풍선 몸통 -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#A5D6A7" /> <!-- 말풍선 배경색 -->
+            <corners android:radius="16dp" /> <!-- 몸통 모서리 둥글게 -->
+        </shape>
+    </item>
+
+    <!-- 말풍선 꼬리 -->
+    <item android:top="40dp" android:left="20dp">
+        <rotate android:fromDegrees="45">
+            <shape android:shape="rectangle">
+                <solid android:color="#A5D6A7" /> <!-- 꼬리 색상 -->
+                <size android:width="20dp" android:height="20dp" /> <!-- 꼬리 크기 -->
+            </shape>
+        </rotate>
+    </item>
+</layer-list>
