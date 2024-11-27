@@ -155,5 +155,17 @@
             android:text="이메일 및 비밀번호 변경"
             android:backgroundTint="#4C9A66"
             android:layout_marginTop="16dp" />
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="로그아웃"
+            android:backgroundTint="#EF5350"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            />
+
     </LinearLayout>
+
 </ScrollView>

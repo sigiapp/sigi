@@ -1,5 +1,6 @@
 package com.example.sigi
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -30,6 +31,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         val newPasswordForEmail = view.findViewById<EditText>(R.id.newPasswordForEmail)
         val changeNameButton = view.findViewById<Button>(R.id.changeNameButton)
         val changeEmailButton = view.findViewById<Button>(R.id.changeEmailButton)
+        val logoutButton = view.findViewById<Button>(R.id.logoutButton) // 로그아웃 버튼 추가
 
         val currentUser = auth.currentUser
 
@@ -120,5 +122,17 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
                 Toast.makeText(context, "모든 필드를 입력하세요.", Toast.LENGTH_SHORT).show()
             }
         }
+
+        // 로그아웃 버튼 클릭 이벤트 처리
+        logoutButton.setOnClickListener {
+            auth.signOut() // Firebase 로그아웃 처리
+            Toast.makeText(context, "로그아웃되었습니다.", Toast.LENGTH_SHORT).show()
+
+            // 로그인 화면으로 이동
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
     }
 }
+
